@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PhpClickHouseLaravel\Expressions;
+namespace LaravelClickhouseEloquent\Expressions;
 
 use ClickHouseDB\Query\Expression\Expression;
 
 /**
  * Class InsertArray
- * @package PhpClickHouseLaravel
+ * @package LaravelClickhouseEloquent
  *
  * Used to insert Array datatype
  * @link https://clickhouse.tech/docs/ru/sql-reference/data-types/array/

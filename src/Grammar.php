@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpClickHouseLaravel;
+namespace LaravelClickhouseEloquent;
 
 
 class Grammar extends \Tinderbox\ClickhouseBuilder\Query\Grammar

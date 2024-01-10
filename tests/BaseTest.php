@@ -4,7 +4,7 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use PhpClickHouseLaravel\Builder;
+use LaravelClickhouseEloquent\Builder;
 use Tests\Models\Example;
 
 class BaseTest extends TestCase

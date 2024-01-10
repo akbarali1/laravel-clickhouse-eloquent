@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpClickHouseLaravel;
+namespace LaravelClickhouseEloquent;
 
 use ClickHouseDB\Statement;
 use ClickHouseDB\Transport\CurlerRequest;
@@ -25,7 +25,7 @@ class Migration extends BaseMigration
     {
         $instance = new static();
         foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
-            if ($trace['function'] == 'pretend') {
+            if ($trace['function'] === 'pretend') {
                 $name = static::class;
                 (new ConsoleOutput())->writeln(
                     "<comment>Clickhouse</comment> <info>$name on connection $instance->connection:</info> $sql"

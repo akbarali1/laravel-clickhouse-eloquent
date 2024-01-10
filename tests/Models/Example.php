@@ -2,7 +2,7 @@
 
 namespace Tests\Models;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class Example extends BaseModel
 {

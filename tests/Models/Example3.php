@@ -2,7 +2,7 @@
 
 namespace Tests\Models;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 /**
  * @property bool $f_bool

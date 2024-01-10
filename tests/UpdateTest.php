@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use PhpClickHouseLaravel\RawColumn;
+use LaravelClickhouseEloquent\RawColumn;
 use Tests\Models\Example;
 
 class UpdateTest extends TestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpClickHouseLaravel;
+namespace LaravelClickhouseEloquent;
 
 use ClickHouseDB\Client;
 use ClickHouseDB\Statement;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpClickHouseLaravel;
+namespace LaravelClickhouseEloquent;
 
 use ClickHouseDB\Client;
 use Illuminate\Support\Facades\DB;

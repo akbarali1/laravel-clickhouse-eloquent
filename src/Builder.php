@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PhpClickHouseLaravel;
+namespace LaravelClickhouseEloquent;
 
 use ClickHouseDB\Client;
 use ClickHouseDB\Statement;
-use PhpClickHouseLaravel\Exceptions\QueryException;
+use LaravelClickhouseEloquent\Exceptions\QueryException;
 use Tinderbox\ClickhouseBuilder\Query\BaseBuilder;
 
 class Builder extends BaseBuilder
@@ -25,7 +25,7 @@ class Builder extends BaseBuilder
      *
      * @var string|null
      */
-    protected $connection = Connection::DEFAULT_NAME;
+    protected ?string $connection = Connection::DEFAULT_NAME;
 
     public function __construct(Client $client = null)
     {

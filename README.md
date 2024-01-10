@@ -64,7 +64,7 @@ CLICKHOUSE_HTTPS=true
 **3.** Add service provider into your config/app.php file providers section:
 
 ```php
-\PhpClickHouseLaravel\ClickhouseServiceProvider::class,
+\LaravelClickhouseEloquent\ClickhouseServiceProvider::class,
 ```
 It should be placed *before* App\Providers\AppServiceProvider::class, and   App\Providers\EventServiceProvider::class.
 
@@ -90,7 +90,7 @@ More about `$db` see here: https://github.com/smi2/phpClickHouse/blob/master/REA
 
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable extends BaseModel
 {
@@ -106,7 +106,7 @@ class MyTable extends BaseModel
 <?php
 
 
-class CreateMyTable extends \PhpClickHouseLaravel\Migration
+class CreateMyTable extends \LaravelClickhouseEloquent\Migration
 {
     /**
      * Run the migrations.
@@ -184,7 +184,7 @@ The supported cast types are: `boolean`.
 ```php
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable extends BaseModel
 {
@@ -243,7 +243,7 @@ See https://clickhouse.tech/docs/en/engines/table-engines/special/buffer/
 
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable extends BaseModel
 {
@@ -262,7 +262,7 @@ If you also want to read from your buffer table, put its name in $table
 
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable extends BaseModel
 {
@@ -301,7 +301,7 @@ Using buffer engine and performing OPTIMIZE or ALTER TABLE DELETE
 
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable extends BaseModel
 {
@@ -357,7 +357,7 @@ MyTable::insertAssoc([[1, 'str', new InsertArray(['a','b'])]]);
 
 namespace App\Models\Clickhouse;
 
-use PhpClickHouseLaravel\BaseModel;
+use LaravelClickhouseEloquent\BaseModel;
 
 class MyTable2 extends BaseModel
 {
@@ -371,7 +371,7 @@ class MyTable2 extends BaseModel
 ```php
 <?php
 
-return new class extends \PhpClickHouseLaravel\Migration
+return new class extends \LaravelClickhouseEloquent\Migration
 {
     protected $connection = 'clickhouse2';
     

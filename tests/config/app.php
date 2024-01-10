@@ -195,7 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \PhpClickHouseLaravel\ClickhouseServiceProvider::class,
+        \LaravelClickhouseEloquent\ClickhouseServiceProvider::class,
     ],
 
     /*

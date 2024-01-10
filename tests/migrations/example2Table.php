@@ -1,6 +1,6 @@
 <?php
 
-return new class extends \PhpClickHouseLaravel\Migration {
+return new class extends \LaravelClickhouseEloquent\Migration {
 
     protected $connection = 'clickhouse2';
 
