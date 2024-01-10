@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace LaravelClickhouseEloquent\Expressions;
@@ -11,36 +10,31 @@ use ClickHouseDB\Query\Expression\Expression;
  * @package LaravelClickhouseEloquent
  *
  * Used to insert Array datatype
- * @link https://clickhouse.tech/docs/ru/sql-reference/data-types/array/
+ * @link    https://clickhouse.tech/docs/ru/sql-reference/data-types/array/
  * @example Model::insertAssoc([[1,'str',new InsertArray(['a','b'])]]);
  */
 class InsertArray implements Expression
 {
-    const TYPE_STRING = 'string';
-    const TYPE_STRING_ESCAPE = 'string_e';
+    public const TYPE_STRING        = 'string';
+    public const TYPE_STRING_ESCAPE = 'string_e';
     // Can also be used for float types
-    const TYPE_DECIMAL = 'decimal';
-    const TYPE_INT = 'int';
+    public const TYPE_DECIMAL = 'decimal';
+    public const TYPE_INT     = 'int';
 
-    private $expression;
+    private string $expression;
 
     /**
-     * @param array $items
+     * @param array  $items
      * @param string $type
      */
     public function __construct(array $items, string $type = self::TYPE_STRING)
     {
-        if (self::TYPE_INT == $type) {
-            $this->expression = "[" . implode(",", array_map('intval', $items)) . "]";
-        } elseif (self::TYPE_DECIMAL == $type) {
-            $this->expression = "[" . implode(",", array_map('floatval', $items)) . "]";
-        } elseif (self::TYPE_STRING_ESCAPE == $type) {
-            $this->expression = "['" . implode("','", array_map(function ($item) {
-                    return str_replace("'", "\'", $item);
-                }, $items)) . "']";
-        } else {
-            $this->expression = "['" . implode("','", $items) . "']";
-        }
+        $this->expression = match ($type) {
+            self::TYPE_INT           => "[".implode(",", array_map('intval', $items))."]",
+            self::TYPE_DECIMAL       => "[".implode(",", array_map('floatval', $items))."]",
+            self::TYPE_STRING_ESCAPE => "['".implode("','", array_map(static fn($item) => str_replace("'", "\'", $item), $items))."']",
+            default                  => "['".implode("','", $items)."']",
+        };
     }
 
     /**

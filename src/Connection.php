@@ -13,7 +13,7 @@ class Connection extends BaseConnection
     public const DEFAULT_NAME = 'clickhouse';
 
     /** @var Client */
-    protected $client;
+    protected Client $client;
 
     /**
      * @return Client
@@ -27,7 +27,7 @@ class Connection extends BaseConnection
      * @param array $config
      * @return static
      */
-    public static function createWithClient(array $config)
+    public static function createWithClient(array $config): static
     {
         $conn = new static(null, $config['database'], '', $config);
         $conn->client = new Client($config);
