@@ -1,42 +1,42 @@
 {
-  "name": "glushkovds/phpclickhouse-laravel",
-  "description": "Adapter of the most popular library https://github.com/smi2/phpClickHouse to Laravel",
-  "keywords": [
+  "name":"akbarali1/laravel-clickhouse-eloquent",
+  "description":"Adapter of the most popular library https://github.com/smi2/phpClickHouse to Laravel",
+  "keywords":[
     "php",
     "laravel",
     "clickhouse"
   ],
-  "homepage": "https://github.com/glushkovds/phpClickHouse-laravel",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
+  "homepage":"https://github.com/akbarali1/laravel-clickhouse-eloquent",
+  "type":"library",
+  "license":"MIT",
+  "authors":[
     {
-      "name": "Denis Glushkov",
-      "email": "amkarovec@gmail.com",
-      "homepage": "https://github.com/glushkovds"
+      "name":"Akbarali",
+      "email":"github@akbarali.uz",
+      "homepage":"https://github.com/akbarali1"
     }
   ],
-  "require": {
-    "php": ">=7.1.0|>=8.0",
-    "smi2/phpclickhouse": "^1.4.2",
-    "the-tinderbox/clickhouse-builder": "^6.0",
-    "illuminate/support": ">=7",
-    "illuminate/database": ">=7"
+  "require":{
+    "php":"^8.1",
+    "smi2/phpclickhouse":"^1.4.2",
+    "the-tinderbox/clickhouse-builder":"^6.0",
+    "illuminate/support":">=7",
+    "illuminate/database":">=7"
   },
-  "require-dev": {
-    "laravel/framework": ">=9",
-    "phpunit/phpunit": "^9"
+  "require-dev":{
+    "laravel/framework":">=9",
+    "phpunit/phpunit":"^9"
   },
-  "suggest": {
+  "suggest":{
   },
-  "autoload": {
-    "psr-4": {
-      "PhpClickHouseLaravel\\": "src/"
+  "autoload":{
+    "psr-4":{
+      "PhpClickHouseLaravel\\":"src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
+  "autoload-dev":{
+    "psr-4":{
+      "Tests\\":"tests/"
     }
   }
 }
