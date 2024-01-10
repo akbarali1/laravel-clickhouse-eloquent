@@ -1,5 +1,6 @@
 {
   "name":"akbarali1/laravel-clickhouse-eloquent",
+  "version" : "0.1",
   "description":"Adapter of the most popular library https://github.com/smi2/phpClickHouse to Laravel",
   "keywords":[
     "php",
@@ -8,6 +9,7 @@
   ],
   "homepage":"https://github.com/akbarali1/laravel-clickhouse-eloquent",
   "type":"library",
+  "minimum-stability": "stable",
   "license":"MIT",
   "authors":[
     {
