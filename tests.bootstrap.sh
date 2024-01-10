@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Installing current library files to empty laravel app
-cp -r /src/* vendor/glushkovds/phpclickhouse-laravel
+cp -r /src/* vendor/akbarali1/laravel-clickhouse-eloquent
 
 # Preparing Phpunit
 cp /src/phpunit.xml phpunit.xml

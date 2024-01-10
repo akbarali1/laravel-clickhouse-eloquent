@@ -1,4 +1,4 @@
-![Tests](https://github.com/glushkovds/phpclickhouse-laravel/actions/workflows/test.yml/badge.svg)
+![Tests](https://github.com/akbarali1/laravel-clickhouse-eloquent/actions/workflows/test.yml/badge.svg)
 
 # phpClickHouse-laravel
 
