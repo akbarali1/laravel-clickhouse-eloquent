@@ -87,7 +87,6 @@ More about `$db` see here: https://github.com/smi2/phpClickHouse/blob/master/REA
 ```php
 <?php
 
-
 namespace App\Models\Clickhouse;
 
 use LaravelClickhouseEloquent\BaseModel;
@@ -99,12 +98,50 @@ class MyTable extends BaseModel
 
 }
 ```
+Or the second example (But it is not recommended to do so)
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Models\ClickHouse;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ *
+ * @property string $service
+ * @property string $message
+ * @property string $context
+ * @property int    $level
+ * @property string $level_name
+ * @property string $channel
+ * @property string $datetime
+ * @property string $extra
+ */
+class ErrorLogsModel extends Model
+{
+    protected $connection = 'clickhouse';
+    protected $table      = 'error_logs';
+
+    protected  $fillable = [
+        'service',
+        'message',
+        'context',
+        'level',
+        'level_name',
+        'channel',
+        'datetime',
+        'extra',
+    ];
+
+}
+```
 
 **2.** Add migration
 
 ```php
 <?php
-
 
 class CreateMyTable extends \LaravelClickhouseEloquent\Migration
 {

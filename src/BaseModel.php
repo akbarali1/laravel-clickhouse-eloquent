@@ -70,12 +70,12 @@ class BaseModel
      * @var string
      */
     protected $connection = Connection::DEFAULT_NAME;
-    
+
     /**
      * Determine if an attribute or relation exists on the model.
      * The __isset magic method is triggered by calling isset() or empty() on inaccessible properties.
      *
-     * @param  string  $key  The name of the attribute or relation.
+     * @param string $key The name of the attribute or relation.
      * @return bool  True if the attribute or relation exists, false otherwise.
      */
     public function __isset($key)
@@ -84,7 +84,7 @@ class BaseModel
             return true;
         }
 
-        $accessor = 'get' . Str::studly($key) . 'Attribute';
+        $accessor = 'get'.Str::studly($key).'Attribute';
         if (method_exists($this, $accessor)) {
             return true;
         }
@@ -95,7 +95,7 @@ class BaseModel
 
         return false;
     }
-    
+
     /**
      * Get the table associated with the model.
      *
@@ -185,6 +185,7 @@ class BaseModel
         }
         $this->exists = !static::insertAssoc([$this->getAttributes()])->isError();
         $this->fireModelEvent('saved', false);
+
         return $this->exists;
     }
 
@@ -197,13 +198,14 @@ class BaseModel
     public static function insert(array $rows): Statement
     {
         $instance = new static();
+
         return $instance->getThisClient()->insert($instance->getTableForInserts(), $rows);
     }
 
     /**
      * Bulk insert into Clickhouse database
      * @param array[] $rows
-     * @param array $columns
+     * @param array   $columns
      * @return Statement
      * @example MyModel::insertBulk([['model 1', 1], ['model 2', 2]], ['model_name', 'some_param']);
      */
@@ -221,19 +223,21 @@ class BaseModel
                 $row = static::castRow($row, $casts);
             }
         }
+
         return $instance->getThisClient()->insert($instance->getTableForInserts(), $rows, $columns);
     }
 
     /**
      * Prepare each row by calling static::prepareFromRequest to bulk insert into database
      * @param array[] $rows
-     * @param array $columns
+     * @param array   $columns
      * @return Statement
      */
     public static function prepareAndInsert(array $rows, array $columns = []): Statement
     {
-        $rows = array_map('static::prepareFromRequest', $rows, $columns);
+        $rows     = array_map('static::prepareFromRequest', $rows, $columns);
         $instance = new static();
+
         return $instance->getThisClient()->insert($instance->getTableForInserts(), $rows, $columns);
     }
 
@@ -258,6 +262,7 @@ class BaseModel
             }
         }
         $instance = new static();
+
         return $instance->getThisClient()->insertAssocBulk($instance->getTableForInserts(), $rows);
     }
 
@@ -269,6 +274,7 @@ class BaseModel
     public static function prepareAndInsertAssoc(array $rows): Statement
     {
         $rows = array_map('static::prepareAssocFromRequest', $rows);
+
         return static::insertAssoc($rows);
     }
 
@@ -304,6 +310,7 @@ class BaseModel
             }
             $row[$index] = $value;
         }
+
         return $row;
     }
 
@@ -314,6 +321,7 @@ class BaseModel
     public static function select($select = ['*']): Builder
     {
         $instance = new static();
+
         return $instance->newQuery()->select($select)->from($instance->getTable());
     }
 
@@ -368,7 +376,7 @@ class BaseModel
      * Dynamically set attributes on the model.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return void
      */
     public function __set(string $key, $value): void
@@ -379,14 +387,14 @@ class BaseModel
     /**
      * Optimize table. Using for ReplacingMergeTree, etc.
      * @source https://clickhouse.tech/docs/ru/sql-reference/statements/optimize/
-     * @param bool $final
+     * @param bool        $final
      * @param string|null $partition
      * @return Statement
      */
     public static function optimize(bool $final = false, ?string $partition = null): Statement
     {
         $instance = new static();
-        $sql = "OPTIMIZE TABLE " . $instance->getTableSources();
+        $sql      = "OPTIMIZE TABLE ".$instance->getTableSources();
         if ($partition) {
             $sql .= " PARTITION '$partition'";
         }
@@ -400,14 +408,15 @@ class BaseModel
     public static function truncate(): Statement
     {
         $instance = new static();
-        return $instance->getThisClient()->write('TRUNCATE TABLE ' . $instance->getTableSources());
+
+        return $instance->getThisClient()->write('TRUNCATE TABLE '.$instance->getTableSources());
     }
 
     /**
      * @param TwoElementsLogicExpression|string|Closure $column
-     * @param int|float|string|null $operator or $value
-     * @param int|float|string|null $value
-     * @param string $concatOperator Operator::AND for example
+     * @param int|float|string|null                     $operator       or $value
+     * @param int|float|string|null                     $value
+     * @param string                                    $concatOperator Operator::AND for example
      * @return Builder
      */
     public static function where(
@@ -417,7 +426,7 @@ class BaseModel
         string $concatOperator = Operator::AND
     ): Builder {
         $instance = new static();
-        $builder = $instance->newQuery()->select(['*'])
+        $builder  = $instance->newQuery()->select(['*'])
             ->from($instance->getTable())
             ->setSourcesTable($instance->getTableSources());
         if (is_null($value)) {
@@ -437,6 +446,7 @@ class BaseModel
     public static function whereRaw(string $expression): Builder
     {
         $instance = new static();
+
         return $instance->newQuery()->select(['*'])
             ->from($instance->getTable())
             ->setSourcesTable($instance->getTableSources())
@@ -451,7 +461,7 @@ class BaseModel
      * @param $key
      * @return mixed|null
      */
-    public function relationResolver($class, $key)
+    public function relationResolver($class, $key): mixed
     {
         return null;
     }
@@ -460,9 +470,9 @@ class BaseModel
      * Determine if the given relation is loaded.
      *
      * @param $key
-     * @return mixed|null
+     * @return bool
      */
-    public function relationLoaded($key)
+    public function relationLoaded($key): bool
     {
         return false;
     }
@@ -472,8 +482,18 @@ class BaseModel
      *
      * @return bool
      */
-    public static function preventsAccessingMissingAttributes()
+    public static function preventsAccessingMissingAttributes(): bool
     {
         return false;
+    }
+
+    /**
+     * Begin querying the model.
+     *
+     * @return Builder
+     */
+    public static function query(): Builder
+    {
+        return (new static)->newQuery();
     }
 }
